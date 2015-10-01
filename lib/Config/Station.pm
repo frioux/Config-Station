@@ -62,6 +62,20 @@ has _config_class => (
    required => 1,
 );
 
+has _decode_via => (
+   is => 'ro',
+   init_arg => 'decode_via',
+   lazy => 1,
+   builder => sub { \&decode_json },
+);
+
+has _encode_via => (
+   is => 'ro',
+   init_arg => 'encode_via',
+   lazy => 1,
+   builder => sub { \&encode_json },
+);
+
 sub _io { io->file(shift->_location) }
 
 sub _debug_log {
@@ -83,7 +97,7 @@ sub _read_config_from_file {
    my $self = shift;
 
    my $ret = try {
-      $self->_debug_log(FILE => decode_json($self->_io->all));
+      $self->_debug_log(FILE => $self->_decode_via->($self->_io->all));
    } catch {
       if ($self->_debug) {
          warn "CONFIGSTATION FROM FILE: $_\n"
@@ -126,7 +140,7 @@ sub load {
 sub store {
    my ($self, $obj) = @_;
 
-   $self->_io->print(encode_json($obj->serialize))
+   $self->_io->print($self->_encode_via->($obj->serialize))
 }
 
 1;
@@ -244,3 +258,16 @@ The location can be set directly, or indirectly by setting the env var
 C<'FILE_' . $env_key>.  As noted above, it is neither required to be set or
 parseable at all.
 
+=head2 decode_via
+
+ my $station = Config::Station->new( ..., decode_via => sub { \&YAML::Load );
+
+A code reference which can inflate a string into a hash reference.  Default uses
+JSON.
+
+=head2 encode_via
+
+ my $station = Config::Station->new( ..., encode_via => sub { \&YAML::Dump );
+
+A code reference which can deflate a hash reference into a string.  Default uses
+JSON.

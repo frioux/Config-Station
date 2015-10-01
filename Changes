@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - Add decode_via/encode_via to allow other storage formats
  - Clean up some of the docs
 
 0.001000
