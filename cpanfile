@@ -1,4 +1,4 @@
-requires 'Moo';
+requires 'Moo' => 2;
 requires 'JSON::MaybeXS';
 requires 'IO::All';
 requires 'Try::Tiny';
