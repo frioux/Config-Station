@@ -1,0 +1,8 @@
+Revision history for {{$dist->name}}
+
+{{$NEXT}}
+ - Clean up some of the docs
+
+0.001000
+ - Initial Release (originally Changes file was missing)
+

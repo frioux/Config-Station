@@ -201,7 +201,7 @@ module.
 
 The main thing that it does is set a prefix for all the env vars that override
 configuration keys.  To be clear, if you specify an C<env_key> of C<FOO>, an env
-var of C<FOO_BAR=BAZ> will pass C<<bar => 'BAZ'>> to the constructor of
+var of C<FOO_BAR=BAZ> will pass C<< bar => 'BAZ' >> to the constructor of
 L</config_class>.
 
 The rest of the things that C<env_key> does are documented alongside their
