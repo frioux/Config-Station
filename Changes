@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.002000  2015-09-30 20:58:12-07:00 America/Los_Angeles
  - Add decode_via/encode_via to allow other storage formats
  - Clean up some of the docs
 
