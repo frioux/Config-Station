@@ -158,8 +158,9 @@ Define your config class:
 And elsewhere you load it up:
 
  my $station = Config::Station->new(
-   env_key  => 'MYAPP',
-   location => '.config.json',
+   config_class => 'MyApp::Config',
+   env_key      => 'MYAPP',
+   location     => '.config.json',
  );
 
  my $config = $station->load;
