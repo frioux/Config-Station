@@ -213,13 +213,18 @@ running the application as follows:
 The C<env_key> is a required attribute which affects everything about this
 module.
 
-The main thing that it does is set a prefix for all the env vars that override
+C<env_key> affects two classes of values:
+
+=head3 Meta Configuration
+
+These values use the C<env_key> as a suffix, and are documented further down.
+
+=head3 Normal Configuration
+
+These values use the C<env_key> as a prefix for env vars that override
 configuration keys.  To be clear, if you specify an C<env_key> of C<FOO>, an env
 var of C<FOO_BAR=BAZ> will pass C<< bar => 'BAZ' >> to the constructor of
 L</config_class>.
-
-The rest of the things that C<env_key> does are documented alongside their
-respective features.
 
 =head2 config_class
 
